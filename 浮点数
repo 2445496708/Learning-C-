@@ -9,7 +9,7 @@ long double 至少和double一样多
 指数范围至少为—37~37
 可查看头文件cfloat
 
-cout会删除结尾的0，调用cout.self()将覆盖这种行为。
+cout会删除结尾的0，调用cout.setf()将覆盖这种行为。
 
 后缀
 1.234f//float
