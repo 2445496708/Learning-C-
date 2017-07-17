@@ -2,3 +2,18 @@ E表示法，e与E都可以
 	5.98E24
 	9.11e-31
 	
+有效数位
+flaot 至少32位
+double 至少48位，且不少于float
+long double 至少和double一样多
+指数范围至少为—37~37
+可查看头文件cfloat
+
+cout会删除结尾的0，调用cout.self()将覆盖这种行为。
+
+后缀
+1.234f//float
+2.45E20F
+2.345324E28//double
+2.2L//long double
+2.3l//long double
