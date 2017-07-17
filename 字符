@@ -1,0 +1,25 @@
+char类型是另一种整型
+
+cout.put（）输出一个字符
+
+转义序列
+  换行符NL(LF) \n
+  水平制表符 HT \t
+  垂直制表符 VT \v
+  退格 BS \b
+  回车 CR \r
+  振铃 BEL \a
+  反斜杠 \ \\
+  问号 ? \?
+  单引号 ' \'
+  双引号 " \"
+  
+Unicode
+ISO 10646
+
+wcha_t  宽字符类型
+  wcin，wout
+  可通过加前缀L来指示宽字符常量和款字符串， wcha_t bob=L'p';
+  
+char16_t,前缀u
+char32_t,前缀U
