@@ -16,3 +16,6 @@ sizeof（）：返回类型或变量的长度，单位为字节；对类型名�
 无符号类型 unsigned
 
 C++中可用const值来声明数组长度
+
+除法/ ,若其中一个操作符是浮点数，则结果为浮点数
+cout.setf(ios_base::fixed,ios_base::floatfield)
