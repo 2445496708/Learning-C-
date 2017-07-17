@@ -2,3 +2,7 @@ short至少16位
 int至少与short一样长
 long至少32位，且至少与int一样长
 long long至少64位，且至少与long一样长
+
+cout<<oct;
+cout<<dec;//默认
+cout<<hex;
