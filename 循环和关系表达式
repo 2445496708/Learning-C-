@@ -1,0 +1,37 @@
+++，--对于内置类型，前缀格式与后缀格式没有差别；但对于用户定义的类型，如果有用户定义的递增和递减运算符，则前缀格式效率更高，因为后缀会先复制一个副本
+
+数组定义的字符串应该用strcmp()进行比较，而不能用"=="，而string类可以；
+strcmp（）返回0，若俩字符串相同
+
+编写延时循环
+    早期：long watit=0;
+          while(wait<1000)
+              {
+                  wait++;
+              }
+    更好方法：
+    #include<ctime>//系统时间
+    ...
+    float secs;
+    cin >> secs;
+    clock_t delay = secs * CLOCKS_PER_SEC;//convert to clock ticks
+    clock_ start = clock();//colck()返回类型别名clock_t
+    while(clock()-start<delay)
+    {
+        ;
+    }
+    ...
+
+typedef typeName aliasName;
+声明一系列变量时，用#define会出问题，而typedef不会
+
+基于范围的for循环
+double prices[5] = {4,3,0,1,2};
+for (double x : prices)//不能改变x的值
+    cout << x << endl;
+for (double &x : prices)//能改变x的值
+   x = x * 0.08;
+
+cin和cin.getline()都不会处理换行符，可用cin.get()进行补救
+
+
