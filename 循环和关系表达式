@@ -32,6 +32,14 @@ for (double x : prices)//不能改变x的值
 for (double &x : prices)//能改变x的值
    x = x * 0.08;
 
-cin和cin.getline()都不会处理换行符，可用cin.get()进行补救
+cin和cin.get(...)都不会处理换行符，可添加cin.get()进行补救；cin.getline()会处理换行符
+
+cin.fail();//检测EOF
+cin.clear();//可清除EOF，使输入得以继续
+cin.eof();
+也可直接用while(cin)或while(cin.get(ch))
+
+
+
 
 
