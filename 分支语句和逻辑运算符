@@ -1,0 +1,40 @@
+#include<cctype>
+返回值为int，而不是bool
+  isalnum():字母或数字，true
+  isalpha():字母,true
+  iscntrl():控制字符，true
+  isdigit():数字，true
+  isxdigit():十六进制数，true
+  isgraph():空格之外的打印字符，true
+  isprint():打印字符包括空格,true
+  ispunct():标点符号,true
+  isspace():标准空白字符，如空格，进纸，换行符，回车，制表符，true
+  isupper():大写字母，ture
+  islower():小写字母，true
+  tolower():若是大写字母，则返回其小写，否则返回该参数
+  toupper():若是小写字母，则返回其大写，否则返回该参数
+
+？：
+
+switch(integer-expression)
+{
+  case label1: statement(s)
+  case label2: statement(s)
+  ...
+  default : statement(s)
+}
+integer-expression必须为整数型表达式，label一般为：int,char或enum
+
+用户输入错误内容：
+1.重置cin以接受新的输入
+2.删除错误输入
+3.提示用户再输入
+while(!cin)
+{
+    cin.clear();//reset input
+    while(cin.get() != '\n')
+          continue;     //get rid of bad input
+          cout << "Please re-enter:";
+    
+}
+  
