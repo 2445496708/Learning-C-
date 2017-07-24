@@ -22,3 +22,5 @@ int (int ar2[][4])或int (int (*ar2)[4])
 将结构地址传入函数，而不是传入副本，可节省内存
 
 函数指针
+void estimate (int lines, double (*pf)(int))
+
