@@ -1,0 +1,37 @@
+内联函数inline
+  类似于C中的宏（#define）
+  牺牲内存，节省时间
+  inline double square(double x){return x * x; }
+  内联函数不能递归
+  尽量写成一行，若是函数太大，编译器不一定会满足内联要求
+
+引用变量
+  别名
+  主要用途是作为函数的形参
+  int rats; int & rodents = rats;
+    //其中，&不是地址运算符，而是类型标识符的一部分。就像声明中的char*指的是指向char的指针一样，int&指的是指向int的引用。
+  必须在声明引用变量时进行初始化，而不能通过赋值
+  声明时void swap(int & a, int & b);
+  调用时 swap(a,b);//直接调用
+  尽可能将引用形参声明为const
+  不要引用已经释放的内存
+
+默认参数
+  在函数原型中进行初始化，而函数定义时不出现默认值（即不做改变）
+  int harpo(int n, int m = 4, int j = 5);
+  必须从右往左添加默认值
+
+函数重载
+  不区分const和非const变量
+  把类型引用和类型本身视为同一个特征标
+  返回类型可以不同，但同时特征标也必须不同
+  名称修饰
+
+函数模板
+  template <typename T>
+  或template <class T>
+  局限性：结构，数组，。。。
+  显式具体化，以template <> 打头
+  template <> void swap<job>(job &, job &)
+  优先级：非模板>显式具体化>模板
+  
