@@ -35,3 +35,12 @@
   template <> void swap<job>(job &, job &)
   优先级：非模板>显式具体化>模板
   
+关键字decltype
+  int x;
+  decltype(x) y;//y具有x的类型
+  template<class T1, class T2>
+  auto h(T1 x, T2 y) -> decltype(x+y)//auto是占位符，后置类型
+  {
+      ...
+      return x + y;
+  }
