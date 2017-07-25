@@ -23,4 +23,4 @@ int (int ar2[][4])或int (int (*ar2)[4])
 
 函数指针
 void estimate (int lines, double (*pf)(int))
-
+调用时，直接写函数名
