@@ -1,5 +1,47 @@
 接口是一个共享框架，供两个系统交互时使用
 
 构造函数调用：
-	
-	
+  显式调用：Stock food = Stock("World Cabbage", 250, 1.25);
+           Stock *pstock = new Stock("World Cabbage", 250, 1.25);
+  隐式调用：Stock garment("Furry Mason", 50, 2.5);
+
+若提供了非默认构造函数，则必须提供默认构造函数
+
+const成员函数，只要类方法不修改调用对象，就应将其声明为const
+ void show () const;
+ 
+this指针
+    一般来说，所有类方法都将this指针设置为调用它的对象的地址
+
+使符号常量的作用域为类
+    这样是不行的：
+    class Bakery
+    {
+    private:
+        const int Months = 12;//只声明，不创建
+	double costs[Months];
+	...
+    有两种方法：
+     枚举：
+     class Bakery
+     {
+     private:
+         enum {Months = 12};//只创建符号常量，不创建枚举变量，不需要枚举名
+	 double costs[Moths];
+	 ...
+     static法：
+     class Bakery
+     {
+     private:
+         static const int Months = 12;
+	 double costs[Months];
+	 ...
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
