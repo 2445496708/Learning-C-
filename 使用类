@@ -1,0 +1,83 @@
+重载限制
+  1.至少有一个操作数是用户定义的类型
+  2.不能违反原来的句法规则，如%不能重载成只使用一个操作数
+  3.不能创建新运算符
+  4.不能重载下面运算符：
+    sizeof
+    .
+    .*//成员指针运算符
+    ::
+    ?://条件运算符
+    typeid//一个RTTI运算符
+    const_cast//强制类型转换运算符
+    dynamic_cast//强制类型转换运算符
+    reinterpret_cast//强制类型转换运算符
+    static_cast//强制类型转换运算符
+  5.下面运算符只能通过成员函数进行重载
+    =
+    ()
+    []
+    ->
+
+友元（特殊的非成员函数）
+  分为三种
+   友元函数
+   友元类
+   友元成员函数
+  创建友元
+   1.将原型放在类声明中：friend Time operator*(double m, const Time & t);
+   2.编写定义，不要使用Time::限定符，不要使用关键字friend，
+   
+重载<<运算符：
+  通过类声明让类知道如何使用cout。
+  版本一：
+    通过友元函数friend void operator<<(ostream & os, const Time & t);//os引用cout对象
+  版本二：
+    版本一不允许：cout << 类 << 非类；
+    所以可改为：
+     ostream & operator<<(ostream & os, const c_name & obj)
+     {
+         os << ... ;
+         return os;
+     }
+
+类的自动转换和强制类型转换
+   Stonewt myCat;
+   myCat = 19.6;
+   隐式转换，自动进行，不需显式强制转换
+   只有接受一个参数的构造函数才能作为转换函数
+   Stonewt Jumbo(7000);
+   Jumbo = 7300;
+   当且仅当转换不存在二义性时，才会进行这种二步转换
+   转换函数是用户定义的强制类型转换：必须是类方法，不能指定返回类型，不能有参数,形式：operator typeName();
+   e.g.operator double();//原型
+       Stonewt::operator dounle ()
+       {
+           return pounds;
+       }//pounds为double成员
+   explicit强制转换关键字
+   过多的转换函数将导致二义性
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
