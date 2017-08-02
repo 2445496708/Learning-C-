@@ -1,17 +1,78 @@
 代码重用机制；
     公有继承
+    
     has-a关系（通常使用）
       类成员：本身是另一个类的对象（称为包含、组合或层次化）
+        使用对象名调用方法
+        
       私有继承
         基类公有成员和保护成员都将成为派生类的私有成员
         使用类名而不是成员名来标识构造函数
+        使用类名和作用域解析运算符调用函数
+        访问基类对象本身，使用强制转换
+            const string & Student::Name() const
+            {
+                return (const string &) *this;
+            }
+        友元访问，通过显式的转换为基类
+        
       或保护继承
+        使用using重新定义访问权限
+            using std::valarray<double>::min;//没有圆括号、函数特征标和返回类型
       
     类模板
-    多重继承
+        非类型参数/表达式参数
+            template <class T, int n>
+            class arr
+            {private: T array[n];}
+            表达式参数有一些限制，可以是整型、枚举、引用或指针
+        递归使用模板
+            ArrayTP<ArrayTP<int, 5>, 10> arr1;
+            等价的数组声明：int arr1[10][5];
+            维的顺序与等价的二维数组相反
+    
+    多重继承MI
+        每个基类前都要有限定符，否则默认为私有
+            class SingingWaiter : public Waiter, public Singer {...};
+        
+    
     虚基类
-    具体化
-
+        使得从多个类（它们的基类相同）派生出的对象只继承一个基类的对象
+        禁止信息通过中间类自动传递给基类
+            若Waiter和Singer的基类都为Worker，则应写为：
+            SingWaiter (const Worker & wk, int p = 0, int v = Singer::other)
+                       : Worker(wk), Waite(wk, p), Singer(wk, v) {};
+        
+    模板的具体化
+        隐式实例化
+            ArrayTP<int, 100> stuff;
+        显式实例化
+            template class ArrayTP<string, 10>;//声明必须位于模板定义所在的名称空间
+        显式具体化
+            template <> class Classname<specialized-type-name> {...};
+        部分具体化
+            //general
+            template <class T1, class　T2> class Pair{...};
+            //specializetion
+            template <class T1> class Pair<T1,int> {...};
+            也可使用指针
+            template <class T>...//general
+            template <class T*>...//specialization
+    
+    成员模板
+    
+    将模板作为参数
+    
+    模板类和友元
+        非模板友元
+        约束模板友元
+        非约束模板友元
+        
+    模板别名
+        typedef
+        using ...=...
+        
+    
 #include <valarray>
   valarray类，用于处理数值
     方法：operator[](); size(); sum(); max(); min();
