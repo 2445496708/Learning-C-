@@ -1,0 +1,74 @@
+友元
+    友元类:所有方法都可以访问原始类的私有成员和保护成员
+    class Tv
+    {
+    public:
+        friend class Remote; //不能从外部增加友情
+    }
+    class Remote{}
+    
+    友元成员函数
+    许多时候并不需要整个类都成为友元类，只需然特定成员成为另一个类的友元
+    这时要注意声明次序，前向声明
+    class TV;//forward declaration
+    class Remote {};
+    class TV {friend void Remote::set_chan(TV & t,int c);}
+    
+    相互为对方的友元
+    class TV {friend class Rmote;};
+    class Remote {friend class TV;};
+    TV中用到Remote的成员要在Remote之后定义
+    
+    共同的友元
+    
+    嵌套类：将类声明放在另一个类中
+    仅当声明位于公有部分，才能在包含类的外面使用嵌套类，而且必须使用作用域解析预算法
+    结构是一种其成员在默认情况下为公有的的类
+    
+异常
+    abort(),原型位于头文件cstdlib中
+    典型实现：向标准错误流（即cerr使用的错误流），发送消息abnormal program termination(程序异常终止)，然后终止程序
+    返回一个随实现而异的值
+    
+    exit()，刷新文件缓冲区，但不显示消息
+    
+    ostream类的get(void)成员通常返回下一个输入字符的ASCII码，但到达文件结尾时，将返回特殊值eof
+    
+    异常机制
+        引发异常
+            throw语句实际上是跳转，即命令程序跳到另一条语句
+            throw关键字表示引发异常，紧随其后的值指出异常的特征。
+        使用异常处理程序捕获异常
+            exception handler
+            处理程序以关键字catch开头
+            随后括号中声明异常类型
+            然后花括号中的代码块指出要采取的措施
+        使用try块
+            关键字try
+            随后花括号表明要注意这些代码引发的异常
+            catch跟在try后
+            
+    栈解退
+其他
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
