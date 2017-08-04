@@ -1,0 +1,37 @@
+string类
+    string实际上是模板具体化basic_string<char>的一个typedef， 同时省略了与内存管理相关的参数
+    
+    构造函数
+    
+    string::npos定义为字符的最大长度，通常为unsigned int的最大值
+    
+    输入
+      C-风格字符串
+        cin >> info;               //read a word
+        cin.get(info, 100);        //read a line, leave \n in queue
+        cin.getline(info, 100);    //read a line, discard \n
+      string对象
+        cin >> stuff;              //read a word
+        getline(cin, stuff);       //read a line, discard \n
+      可选参数，输入边界，默认为‘\n’
+        cin.getling(info, 100, ':'); //read up to : ,discard :
+        getline(stuff, ':');    //read up to : ,discard :
+        
+    size()&length
+      
+    find()
+      
+    capacity(): 返回当前分配给字符串的内存块大小
+    reserve(): 请求内存块的最小长度
+      
+    c_str()：返回一个指向C-风格字符串的指针
+    
+智能指针模板
+    
+    auto_ptr
+    unique_ptr
+    shared_ptr
+    
+标准模板库（STL）
+函数对象
+STL算法
