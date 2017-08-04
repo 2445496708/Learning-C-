@@ -47,7 +47,8 @@
             关键字try
             随后花括号表明要注意这些代码引发的异常
             catch跟在try后
-            
+        try -> throw object -(mesg)> catch (object)-> {break or continue -> try} 
+         
     栈解退
     
     exception类，常作为基类
