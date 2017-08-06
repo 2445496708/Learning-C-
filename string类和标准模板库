@@ -28,10 +28,58 @@ string类
     
 智能指针模板
     
+    头文件memory
+    
     auto_ptr
     unique_ptr
     shared_ptr
     
+    智能指针过期，会自动调用析构函数，即使用new后，无需显式使用delete
+    
+    问题：多个指针指向同一个对象，引起多次删除同一内存
+    方案：定义赋值运算值，使之执行深复制
+         建立所有权概念，anto_ptr、unique_ptr（更严格）
+         引用计数，shared_ptr
+    
+    多个指针指向同一对象：
+        auto_ptr行为不确定
+        unique_ptr编译警告
+        应使用shared_ptr
+        
+    函数返回，优先选择unique_ptr
+    
+    auto_ptr使用的是delete，而unique_ptr使用的是delete[],后者可用于数组的变体
+    
+    
 标准模板库（STL）
-函数对象
-STL算法
+    STL是一种泛型编译
+        面向对象编程关注的是编程的数据方面，而泛型编程关注的是算法，共同之处是抽象和可重用
+        
+    容器
+        公用的基本方法
+            size（）
+            swap（）
+            begin（）
+            end（）
+            
+        vector
+            #include <vector>
+            int n;
+            cin >> n;
+            vector<double> scores(n);
+            
+            push_back()
+            erase（）
+            insert（）
+            for_each（）
+            random_shuffle()
+            sort（）
+            
+    基于范围的for循环是为用于SLT而设计的
+        
+    迭代器
+        广义指针
+        
+    函数对象
+    算法
+
