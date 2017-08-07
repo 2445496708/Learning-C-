@@ -26,6 +26,8 @@ string类
       
     c_str()：返回一个指向C-风格字符串的指针
     
+    string类不是STL的组成部分，但它考虑到了STL，包含了begin(),end(), rbegin(),rend()等，因此可以使用STL接口
+    
 智能指针模板
     
     头文件memory
@@ -61,9 +63,11 @@ string类
             swap（）
             begin（）
             end（）
+            find（）
             
         vector
             #include <vector>
+            快速访问
             int n;
             cin >> n;
             vector<double> scores(n);
@@ -74,12 +78,128 @@ string类
             for_each（）
             random_shuffle()
             sort（）
+            可反转容器
+            rbegin()
+            rend()
+        
+        deque
+            双端队列
+            
+        list
+            快速插入和删除
+            可反转
+            void merge(list<T, Alloc>& x)
+            void remove(const T & val)
+            void sort()
+            void splice(iterator pos, list<T, Alloc>x)
+            void unique()
+            remove()
+            remove_if(bool)
+            
+        queue
+            适配器类
+            bool empty()const
+            size_type size()const
+            T& front()
+            T& back()
+            void push(const T& x)
+            void pop()
+            
+        priority_queue
+        stack
+            适配器类
+            bool empty()const
+            size_type size()const
+            T& top()
+            void push(const T& x)
+            void pop()
+        
+        forwar_list
+            单向
+            
+        关联容器
+        将值和键关联在一起，并使用键来查找值
+        通常使用树来实现
+            map
+                值和键的类型不同
+            multimap
+                multimap<keytype, datatype, compare> //第三个参数可选
+                first()
+                second()
+                count()
+                lower_bound()
+                upper_bound()
+                equal_range()
+            set
+                值和键的类型相同
+                键是唯一的
+                set<string, less<string>> A;
+                set_union(A.begin(), A.end(), B.begin(), B.end(), ostream_iterator<string, char> out(cout, " "));
+                set_intersection()交集
+                set_difference()
+                lower_bound()
+                upper_bound()
+                
+            multiset
+                可能有多个值的键相同
+                
+            *//bitset
+        无序关联容器
+        基于哈希表
+            unordered_map
+            unordered_multimap
+            unordered_set
+            unordered_multiset
             
     基于范围的for循环是为用于SLT而设计的
         
     迭代器
+    #include <iterator>
         广义指针
         
-    函数对象
-    算法
+        功能要求：
+            解除引用
+            赋值
+            比较
+            遍历
+        
+        vector<double>::iterator pr;
+        
+        前缀版本operator++
+        后缀版本operator++(int)
+        
+        类型：
+            输入迭代器
+            输出迭代器
+            正向迭代器
+            双向迭代器
+            随机访问迭代器
+        
+        ostream_iterator<传入类型，输出类型> out(cout, " ");
+        istream_iterator
+        
+        reserve_iterator
+        rbegin()
+        rend()
+        
+        insert_iterator<vector<int>> insert_iter(dice, dice.begint())
+        back_insert_iterator<vector<int>> insert_iter(dice)
+        front_insert_iterator...
+        
+        
 
+        
+    函数对象/函数符
+       bool 谓词 
+        
+    
+    算法
+        #include <algorithm>
+            非修改式序列操作
+            修改式序列操作
+            排序和相关操作
+        #include <numeric>
+            通用数字运算
+            
+   valarray<double> vad(10);
+   sort(begin(vad), end(vad));
