@@ -108,6 +108,8 @@ cin
 文件输入和输出
   流状态检查： is_open()
   
+  clear()重置文件的读写
+  
   命令行处理技术
   int main(int argc, char * argv[])
     argc:参数个数，包括命令名本身
@@ -120,7 +122,8 @@ cin
   随机存取
     seekg()
     seekp()
-    参数：streamoff，streampos
+    seekp(225,iso_base::beg);
+    参数：streamoff，streampos:beg,curr,end
   
   临时文件
     char * tmpnam(char * pszName);
