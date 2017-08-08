@@ -127,4 +127,6 @@ cin
   
   内核格式化
     读取string对象中的格式化信息或将格式化信息写入string对象中
-    
+    #include <sstream>
+      ostringstream类
+      istringstream类
