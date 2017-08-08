@@ -36,8 +36,95 @@ cout
       ios_base::showpos   //显示+
       
     fmtflag setf(fmtflag, fmtflag);
-      第二参数            第一参数               含义
-      ios_bas::basefield ios_base::dec 
+      第二参数               第一参数               含义
+      ios_bas::basefield    ios_base::dec         使用基数10
+      ios_bas::basefield    ios_base::oct         使用基数8
+      ios_bas::basefield    ios_base::hex         使用基数16
+      
+      ios_base::floatfield  ios_base::fixed       使用定点计数法
+      ios_base::floatfield  ios_base::scientific  使用科学计数法
+      
+      ios_base::adjustfield ios_base::left        左对齐
+      iOS_base::adjustfield ios_base::right       右对齐
+      ios_base::adjustfield ios_base::internal    符号或基数前缀左对齐，值右对齐
+      
+      定点表示法和科学计数法都有以下两个特征
+        精度指的是小数位数
+        显示末尾的零
+      
+      ios_base::fmtflags old = cout.setf(ios::left, ios::adjustfield);
+      out.setf(old, ios::adjustfield);
+      
+      cout.unself(ios_base::floatfield); //恢复默认状态
+      
+    标准控制符，使用cout调用setf（）
     
+    #include <iomanip>
+      setprecision()
+      setfill()
+      setw()
+      它们是控制符，可直接与cout连用
       
 cin
+  控制符hex,oct和dec可以和cin一起使用
+  cin>>跳过空白（空格，换行，制表符）
+  
+  状态流（定义为iostate类型），由3个ios_base元素组成：eofbit，badbit，failbit
+    成员：
+    eofbit
+    badbit
+    failbit
+    goodbit
+    good()
+    eof()
+    bad()
+    fail()
+    rdstate()
+    exceptions()
+    exceptions(iostate ex)
+    clear(iostate s)
+    setstate(iostate s)
+  
+  其他istream类方法
+    非格式化输入函数
+      get（char&）和get(void)提供不挑锅空白的单字符输入功能
+      get（char*,int,char)和getline(char*,int,char)
+      ignore(读取的最大字符数，分解符)
+    
+    read()
+      char gross[144];
+      cin.read(gross, 144);
+      不会在输入后加空值字符，不能将输入转为字符串
+      常与write()一起使用，完成文件输入和输出
+      返回类型为istream &
+    peek()
+      返回输入中的下一个字符，但不会抽取输入流中的字符，查看
+    gcount()
+      返回最后一个非格式化抽取方法读取的字符数
+    putback()
+     将一个字符插入到输入字符串中，被插入的字符将是下一条输入语句读取的第一个字符
+     返回类型是istream &
+    
+文件输入和输出
+  流状态检查： is_open()
+  
+  命令行处理技术
+  int main(int argc, char * argv[])
+    argc:参数个数，包括命令名本身
+    argv:指向命令函参数的指针
+    如对于命令行：wc report1 report2 report3
+    则argc = 4,argv[0] = wc, argv[1] = report1,...
+  
+  文件模式
+  
+  随机存取
+    seekg()
+    seekp()
+    参数：streamoff，streampos
+  
+  临时文件
+    char * tmpnam(char * pszName);
+  
+  内核格式化
+    读取string对象中的格式化信息或将格式化信息写入string对象中
+    
