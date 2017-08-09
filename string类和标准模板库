@@ -190,7 +190,17 @@ string类
 
         
     函数对象/函数符
+       由使用参数分类：
+         生成器
+         一元函数
+         二元函数
        bool 谓词 
+       是可以以函数方式与（）结合使用的任意对象
+       包括：函数名， 指向函数的指针和重载了（）运算符的类对象
+       如： 类Linear 重载了（）:double operator()(double a){return a*x;}//x来自与构造函数中的数据成员
+            则Linear f1;
+              dounble y = f1(6.6);
+              相当于 f1.operator()(6.6)
         
     
     算法
