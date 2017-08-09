@@ -8,6 +8,22 @@
       如果类有接受initializer_list作为参数的构造函数，则初始化列表语法就只能用于该构造函数
         列表中的元素必须是同一类型或可以转化为同一类型
       还可用作常规函数的参数
+      #include<initializer_list>
+      double sum(std::initializer_list<double> il);
+      int main()
+      {
+          double total = sum({2.4,3.1,4});
+      }
+      double sum(std::initializer_list<double> il)
+      {
+          double tot = 0;
+          for (auto p = il.begin(); p != il.end(); p++)
+          {
+              tot += *p;
+          }
+          
+          return tor;
+      }
   
 声明
   auto
