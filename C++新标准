@@ -1,0 +1,174 @@
+统一的初始化
+  也可以用于new
+  int * ar = new int [4] {2, 4,6,7};//C++11
+  
+  缩窄
+  
+  std::initializer_list
+      如果类有接受initializer_list作为参数的构造函数，则初始化列表语法就只能用于该构造函数
+        列表中的元素必须是同一类型或可以转化为同一类型
+      还可用作常规函数的参数
+  
+声明
+  auto
+  
+  decltype
+  
+  返回类型后置
+  
+  模板别名 using= 
+  
+  nullptr
+  
+智能指针
+  
+异常规范修改
+  
+作用域内枚举
+    enum Old {}; //traditional form
+    enum class New1 {} // new form
+    enum struct New2 {} // new form
+
+对类的修改
+  explicit // 显式转换运算符
+  
+  类内成员初始化
+  
+模板和STL方面的修改
+  基于范围的for
+  
+  新的STL容器
+  
+  新的STL方法
+    cbeginn(),cend()...
+  
+  valarray 升级
+  
+  摒弃export
+  
+  尖括号
+  
+右值引用
+  &&
+
+移动语义与右值引用
+  移动构造，移动赋值
+  避免了移动数据，而只是修改了记录
+    复制构造函数
+    Useless::Useless (const Useless & f) : n(f.n)
+    {
+        ++ct;
+        pc = new char[n];
+        for (int i = 0; i < n; i++)
+        {
+            pc[i] = f.pc[i];
+        }
+    }
+    移动构造函数
+    Useless::Useless(Useless && f) : n(f.n)
+    {
+        ++ct;
+        pc = f.pc;      //steal address
+        f.pc = nullptr; //give old object nothing in return
+        f.n = 0;
+    }
+    
+  强制移动
+    将非右值转为右值
+    使用头文件utility中声明的函数std::move()
+  
+使用default显式声明默认版本
+  Someclass & operator=(const Someclass &) = default;
+
+使用delete禁言方法
+  Someclass & operator=(const Someclass &) = delete;
+
+委托构造函数
+
+继承构造函数
+  using C1::fn;
+
+管理虚方法： override 和 final
+  覆盖 和 禁止重定义
+  放在参数列表后
+
+generate()为STL算法
+    std：：generate(vector.begin(), vector.end(), std::rand);
+
+count_if()
+
+Lambda函数
+  []代替函数名， 没有声明返回类型
+  [](double x) -> double{int y = x; return x-y;}
+  
+  auto mod = [](int x){return x % 3 == 0;}
+  
+  与常规函数不同，可以在函数内部定义有名字的Lambda函数
+  
+  额外功能：可以访问作用域内的任何动态变量，只要将其放在中括号内
+  [count] 按值
+  [&count]引用访问
+  [&]引用访问所有动态变量
+  [=]按值访问所有动态变量
+  [=,&ed]组合
+  
+包装器 wrapper
+    也叫适配器adapter
+    
+    bind
+    bin1st
+    bin2ed
+        让接受两个参数的函数能与这样的STL算法匹配，及它要求接受一个参数的函数作为参数
+    men_fn
+        使能将成员函数作为常规函数进行传递
+    reference_wrapper
+        使能创建行为像引用但可被复制的对象
+    function
+        使能以统一的方式处理多种类似于函数的形式
+        #include<functional>
+        std::function<double(char, int)> fdci;调用特征标：接受一个int和一个char，返回double值
+        
+        double dub(double) {return 2.0*x;}
+        std::function<double(double)> ef1 = dub;
+    
+可变参数模板
+    模板参数包（parameter pack）
+    函数参数包
+    展开（unpack）参数包
+    递归
+    
+    template<typename... Args>   //Args is a template parameter pack
+    void show_list(Args... args) //args is a function parameter pack
+    {...}
+    
+    为了展开函数包，要做出如下修改
+      template<typenaem T, typename... Args>   
+    void show_list(T value, Args... args) 
+    {
+        std::cout << value << ", ";
+        show_list(args...);//使用递归实现
+    }
+    进一步改进：
+    添加
+    template<typenaem T>   
+    void show_list(T value) 
+    {
+        std::cout << value << '\n';
+        
+    }
+    
+    进一步改进show_list(const Args&... args);
+
+并行编码
+    关键字thread_local
+    库支持：原子操作（atomic operation）库，提供头文件atomic
+           线程支持库，提供头文件thread，mutex， conditon_variable, future
+
+新增的库
+
+低级编程
+
+Boost项目
+
+用例分析（use-case analysis）
+CRC卡（Class/Responsibilities/Collaborators）
