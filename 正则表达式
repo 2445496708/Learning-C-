@@ -37,3 +37,62 @@ http://www.cnblogs.com/ldq2016/p/5528177.html
 /^ 和 $/成对使用应该是表示要求整个字符串完全匹配定义的规则，而不是只匹配字符串中的一个子串。
 
 \d：用于匹配从0到9的数字；
+\s：空格；
+
+正则表达式处理中文
+#include <iostream>
+#include <string>
+#include <regex>
+#include <stdlib.h>
+#include <windows.h>
+
+using namespace std;
+
+bool is_department_name_legal(wstring &dname);
+
+int main()
+{
+	while(1)
+	{
+		wstring depart;
+		getline(wcin, depart);
+		if (is_department_name_legal(depart))
+		{
+			cout << "right\n";
+		}
+		else 
+		{
+			cout << "wrong\n";
+		}
+	}
+	return 0;
+}
+
+bool is_department_name_legal(wstring &dname)
+{
+	if (dname.size() == 0) return false;//是否非空
+
+	/*if (dname.find('?')!= string::npos || dname.find('\\')!= string::npos || dname.find('\'')!= string::npos || dname.find('\"')!= string::npos
+		|| dname.find('<')!= string::npos || dname.find('>')!= string::npos || dname.find('!')!= string::npos || dname.find(';')!= string::npos 
+		|| dname.find(':')!= string::npos || dname.find(' ')!= string::npos || dname.find('*')!= string::npos || dname.find('+')!= string::npos
+		|| dname.find('-')!= string::npos || dname.find('/')!= string::npos || dname.find('&')!= string::npos || dname.find('^')!= string::npos
+		|| dname.find('%')!= string::npos || dname.find('$')!= string::npos || dname.find('#')!= string::npos || dname.find('@')!= string::npos 
+		|| dname.find('~')!= string::npos || dname.find('`')!= string::npos || dname.find('；')!= string::npos || dname.find('：')!= string::npos 
+		|| dname.find('“')!= string::npos || dname.find('”')!= string::npos || dname.find('‘')!= string::npos )
+
+		return false;*/
+	int len = WideCharToMultiByte(CP_ACP, 0, dname.c_str(), -1, NULL, 0, NULL, NULL);  // 先取得转换后的ANSI字符串所需的长度
+    char* buf2 = new char[len];                                                        // 分配缓冲区
+    WideCharToMultiByte(CP_ACP, 0, dname.c_str(), -1, buf2, len, NULL, NULL);          // 开始转换
+
+	wregex not_include(L"[!?*\\+\\=\\-\"';:/|<>\《\》\“\、\：\；\！\？\”\‘\’@#$%^&*~`\\\\\\s]");
+	//wregex not_include(L"[^\u4e00-\u9fa5+]");
+	//regex include("[\\w+|(\u4e00-\u9fa5)+]+");
+	//if (!regex_match(buf2, include))
+	if (regex_search(dname, not_include))
+	{
+		return false;
+	}
+	return true;
+
+}
